@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ThemeToogle from '../ThemeToggle/ThemeToogle';
 import UserMenu from '../UserMenu/UserMenu';
 import { useSession } from 'next-auth/react';
@@ -9,7 +9,7 @@ export default function Header({}: Props) {
   const { data: session } = useSession();
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-200 rounded-full px-5 relative top-2 ">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl">Logo</a>
       </div>
@@ -23,7 +23,7 @@ export default function Header({}: Props) {
           <UserMenu />
         ) : (
           <div>
-            <button className="btn btn-ghost">Sign Up</button>
+            <button className="btn btn-glass">Sign Up</button>
             <button className="btn btn-ghost">Sign In</button>
           </div>
         )}
