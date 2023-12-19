@@ -1,25 +1,46 @@
-import React from 'react';
-import { Bars3Icon } from '@heroicons/react/16/solid';
-import ThemeToogle from '../ThemeToggle/ThemeToogle';
-import UserMenu from '../UserMenu/UserMenu';
-import SearchBar from '../SearchBar/SearchBar';
+import React, { useEffect, useState } from 'react';
+import ThemeToogle from './ThemeToggle/ThemeToogle';
+import UserMenu from './UserMenu/UserMenu';
+import { useSession } from 'next-auth/react';
+import Link from 'next/link';
+import cx from 'classnames';
 
-type Props = {};
+type Props = {
+  className?: string;
+};
 
-export default function Header({}: Props) {
+export default function Header({ className }: Props) {
+  const { data: session } = useSession();
+
+  const navbarClassName = cx({
+    ['navbar bg-base-200 rounded-full px-5 relative top-2 ']: true,
+    [className as any]: className,
+  });
+
   return (
-    <div className="navbar bg-base-100">
+    <div className={navbarClassName}>
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">Logo</a>
+        <Link href="/" className=" text-2xl bold rounded-full flex items-center justify-center">
+          NEXT
+        </Link>
       </div>
 
-      <div></div>
-
-      <div className="flex-none gap-2">
-        {/* <SearchBar /> */}
+      <div className="flex-none gap-4">
         <ThemeToogle />
-        <UserMenu />
+        {session ? (
+          <UserMenu />
+        ) : (
+          <div>
+            <button className="btn btn-glass rounded-full">
+              <Link href="/auth/signup">Sign Up</Link>
+            </button>
+            <button className="btn btn-glass rounded-full">
+              <Link href="/auth/signin">Sign In</Link>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
 }
+

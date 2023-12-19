@@ -2,7 +2,7 @@
   "semi": true,
   "trailingComma": "es5",
   "singleQuote": true,
-  "printWidth": 80,
+  "printWidth": 120,
   "tabWidth": 2,
   "useTabs": false,
   "jsxSingleQuote": false,
@@ -12,5 +12,5 @@
   "embeddedLanguageFormatting": "auto",
   "htmlWhitespaceSensitivity": "css",
   "vueIndentScriptAndStyle": false,
-  "endOfLine": "lf"
+  "endOfLine": "crlf"
 }
