@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import ThemeToogle from '../ThemeToggle/ThemeToogle';
-import UserMenu from '../UserMenu/UserMenu';
+import ThemeToogle from './ThemeToggle/ThemeToogle';
+import UserMenu from './UserMenu/UserMenu';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import cx from 'classnames';
@@ -24,8 +24,6 @@ export default function Header({ className }: Props) {
           NEXT
         </Link>
       </div>
-
-      <div></div>
 
       <div className="flex-none gap-4">
         <ThemeToogle />
