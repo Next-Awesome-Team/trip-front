@@ -9,9 +9,9 @@ type Props = {
 const Layout: React.FC<Props> = ({ children }) => {
   return (
     <div className="px-28">
-      <Header />
+      <Header className=" mb-4" />
       {children}
-      <Footer />
+      <Footer className=" mt-4" />
     </div>
   );
 };

@@ -3,18 +3,25 @@ import ThemeToogle from '../ThemeToggle/ThemeToogle';
 import UserMenu from '../UserMenu/UserMenu';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import Image from 'next/image';
+import cx from 'classnames';
 
-type Props = {};
+type Props = {
+  className?: string;
+};
 
-export default function Header({}: Props) {
+export default function Header({ className }: Props) {
   const { data: session } = useSession();
 
+  const navbarClassName = cx({
+    ['navbar bg-base-200 rounded-full px-5 relative top-2 ']: true,
+    [className as any]: className,
+  });
+
   return (
-    <div className="navbar bg-base-200 rounded-full px-5 relative top-2 ">
+    <div className={navbarClassName}>
       <div className="flex-1">
-        <Link href="/" className=" rounded-full flex items-center justify-center">
-          <Image src="/next.svg" alt="" width={90} height={40} />
+        <Link href="/" className=" text-2xl bold rounded-full flex items-center justify-center">
+          NEXT
         </Link>
       </div>
 
@@ -38,3 +45,4 @@ export default function Header({}: Props) {
     </div>
   );
 }
+
