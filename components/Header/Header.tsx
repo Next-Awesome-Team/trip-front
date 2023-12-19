@@ -1,12 +1,13 @@
 import React from 'react';
-import { Bars3Icon } from '@heroicons/react/16/solid';
 import ThemeToogle from '../ThemeToggle/ThemeToogle';
 import UserMenu from '../UserMenu/UserMenu';
-import SearchBar from '../SearchBar/SearchBar';
+import { useSession } from 'next-auth/react';
 
 type Props = {};
 
 export default function Header({}: Props) {
+  const { data: session } = useSession();
+
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -15,10 +16,17 @@ export default function Header({}: Props) {
 
       <div></div>
 
-      <div className="flex-none gap-2">
+      <div className="flex-none gap-4">
         {/* <SearchBar /> */}
         <ThemeToogle />
-        <UserMenu />
+        {session ? (
+          <UserMenu />
+        ) : (
+          <div>
+            <button className="btn btn-ghost">Sign Up</button>
+            <button className="btn btn-ghost">Sign In</button>
+          </div>
+        )}
       </div>
     </div>
   );
